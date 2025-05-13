@@ -13,21 +13,15 @@ class StickyContainer extends StatelessWidget {
 
   /// true if you want to display the StickyWidgets overflowing outside of the StickyContainer's bounds.
   final bool displayOverFlowContent;
-  const StickyContainer(
-      {Key? key,
-      required this.child,
-      required this.stickyChildren,
-      this.displayOverFlowContent = false})
-      : super(key: key);
+  const StickyContainer({
+    super.key,
+    required this.child,
+    required this.stickyChildren,
+    this.displayOverFlowContent = false,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      clipBehavior: Clip.none,
-      children: [
-        child,
-        ...stickyChildren,
-      ],
-    );
+    return Stack(clipBehavior: Clip.none, children: [child, ...stickyChildren]);
   }
 }

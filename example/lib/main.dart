@@ -12,9 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData(primarySwatch: Colors.blue),
       home: const MyHomePage(),
     );
   }
@@ -51,7 +49,9 @@ class _MyHomePageState extends State<MyHomePage> {
           StickyWidget(
             initialPosition: StickyPosition(bottom: 20, right: 20),
             finalPosition: StickyPosition(
-                bottom: MediaQuery.of(context).size.height - 80, right: 20),
+              bottom: MediaQuery.of(context).size.height - 80,
+              right: 20,
+            ),
             controller: _controller,
             child: Container(
               width: 40,
@@ -65,13 +65,12 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
         child: ListView.builder(
-            controller: _controller,
-            itemCount: 50,
-            itemBuilder: ((context, index) {
-              return ListTile(
-                title: Text("Tile $index"),
-              );
-            })),
+          controller: _controller,
+          itemCount: 50,
+          itemBuilder: ((context, index) {
+            return ListTile(title: Text("Tile $index"));
+          }),
+        ),
       ),
     );
   }

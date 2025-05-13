@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'sticky_position.dart';
 
 class StickyWidget extends StatefulWidget {
@@ -14,33 +15,31 @@ class StickyWidget extends StatefulWidget {
   /// An optional callback function, which gets called on every scroll. It receives scrolloffset as parameter which can be used to animate the StickyWidget.
   final Function(double)? callback;
   final Widget child;
-  StickyWidget(
-      {Key? key,
-      required StickyPosition initialPosition,
-      required StickyPosition finalPosition,
-      required ScrollController controller,
-      required this.child,
-      this.callback})
-      : assert(
-            !((initialPosition.top != null) ^ (finalPosition.top != null)) &&
-                !((initialPosition.bottom != null) ^
-                    (finalPosition.bottom != null)) &&
-                !((initialPosition.left != null) ^
-                    (finalPosition.left != null)) &&
-                !((initialPosition.left != null) ^
-                    (finalPosition.left != null)),
-            "Provide same position paramters for initial and final Positions"),
-        assert(
-            (initialPosition.top != null) ^ (initialPosition.bottom != null) &&
-                (initialPosition.left != null) ^
-                    (initialPosition.right != null) &&
-                (finalPosition.top != null) ^ (finalPosition.bottom != null) &&
-                (finalPosition.left != null) ^ (finalPosition.right != null),
-            "Don't provide both parameters of same axis (eg: top, bottom)"),
-        _initialPosition = initialPosition,
-        _finalPosition = finalPosition,
-        _controller = controller,
-        super(key: key);
+  StickyWidget({
+    super.key,
+    required StickyPosition initialPosition,
+    required StickyPosition finalPosition,
+    required ScrollController controller,
+    required this.child,
+    this.callback,
+  }) : assert(
+         !((initialPosition.top != null) ^ (finalPosition.top != null)) &&
+             !((initialPosition.bottom != null) ^
+                 (finalPosition.bottom != null)) &&
+             !((initialPosition.left != null) ^ (finalPosition.left != null)) &&
+             !((initialPosition.left != null) ^ (finalPosition.left != null)),
+         "Provide same position paramters for initial and final Positions",
+       ),
+       assert(
+         (initialPosition.top != null) ^ (initialPosition.bottom != null) &&
+             (initialPosition.left != null) ^ (initialPosition.right != null) &&
+             (finalPosition.top != null) ^ (finalPosition.bottom != null) &&
+             (finalPosition.left != null) ^ (finalPosition.right != null),
+         "Don't provide both parameters of same axis (eg: top, bottom)",
+       ),
+       _initialPosition = initialPosition,
+       _finalPosition = finalPosition,
+       _controller = controller;
 
   @override
   State<StickyWidget> createState() => _StickyWidgetState();
